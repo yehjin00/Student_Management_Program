@@ -9,7 +9,8 @@
 6. Subject Total Score(Java/Algorithm)
 7. Subject Average(Java/Algorithm)
 8. Order by grade(ASC or DESC)
-9. Quit<br> 
+9. Quit
+
 ============================================================<br> 
 Enter the number<br> 
 >>>
