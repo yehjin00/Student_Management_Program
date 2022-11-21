@@ -16,7 +16,6 @@ class Student{
     }
     
     static ArrayList<Student> student=new ArrayList<Student>();
-    static int casenum=0;
     
     public static void input(){
         Scanner scanner=new Scanner(System.in);
