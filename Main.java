@@ -502,7 +502,6 @@ class AlgoComparator implements Comparator<Student>{ // Comparator라는 인터�
 		return 0;
 	}
 }
-    
 
 public class Main {
     public static void main(String[] args) {
