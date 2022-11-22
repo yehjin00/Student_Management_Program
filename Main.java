@@ -156,7 +156,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
             return;
         }
         
-        printall();
+        printall(); // 수정하기 용이하도록 student내 자료들을 출력
         System.out.print("Index to modify: "); // 수정할 자료의 인덱스 번호 입력
         Scanner scanner=new Scanner(System.in);
         int index=scanner.nextInt();
