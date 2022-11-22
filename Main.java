@@ -70,7 +70,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
             while(true){ // 0~100 사이 값을 입력할 때까지 반복
                 System.out.print("Algorithm score(0~100): "); // 알고리즘 점수 입력
                 algoscore=scanner.nextDouble();
-                if(javascore<0 || javascore>100){ // 0~100값이 아닐경우
+                if(algoscore<0 || algoscore>100){ // 0~100값이 아닐경우
                     System.out.println("Please keep the range");
                     continue;
                 }
