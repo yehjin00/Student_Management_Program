@@ -311,7 +311,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
                             break;
                         }
                     }
-                    student.add(i,new Student(name,age,javascore,algoscore));
+                    student.add(i,new Student(name,age,javascore,algoscore)); // 해당 인덱스값에 정보를 입력해야하므로 맨 뒤에 추가하는 input함수를 "All"에서 사용하지못함
             		student.remove(i+1);
                     break;
                 }
