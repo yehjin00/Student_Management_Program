@@ -39,7 +39,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
                 
                 for(int i=0;i<student.size();i++){
                     if(name.equalsIgnoreCase(student.get(i).name)){ // list에 같은 이름이 존재하는 경우
-                        same=true; // 이름이 같아면 true로 변환
+                        same=true; // 이름이 같으면 true로 변환
                         System.out.println("The name already exists.");
                         System.out.println("");
                         break;
