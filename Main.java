@@ -119,7 +119,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
         System.out.println("");
     }
     
-    public static void search(){
+    public static void search(){ // 자료 검색
         if(student.isEmpty()){
             System.out.println("No value");
             System.out.println("");
@@ -144,7 +144,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
         System.out.println("");
     }
     
-    public static void modify(){ // 정확한 값을 입력할 떄까지 반복한다.
+    public static void modify(){ // 자료 수정, 정확한 값을 입력할 떄까지 반복한다.
         String name = null;
         int age = 0;
         double javascore = 0;
