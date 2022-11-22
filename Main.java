@@ -17,7 +17,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
     
     static ArrayList<Student> student=new ArrayList<Student>(); // ArrayList를 이용하여 여러 학생정보를 저장, 모든 함수에서 사용할 수 있도록 static으로 선언
     
-    public static void input(){ // 자료 입력
+    public static void input(){ // 자료 입력, 정확한 값을 입력할 떄까지 반복한다.
         String name;
         int age;
         double javascore;
@@ -25,24 +25,30 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
         Scanner scanner=new Scanner(System.in);
         
         while(true){ // 이름에 q를 입력할 때까지 반복
-            System.out.print("Name(q to quit): "); // 이름 입력
-            name=scanner.next();
-            name=name.substring(0, 1).toUpperCase() + name.substring(1); // 첫 문자는 대문자로 바꿔서 저장
+            while(true){
+                boolean same=false; // 이름이 같은 경우인지 아닌지 판단하기위한 flag, 다시 반복을 시작할 때 false로 값을 변환하기위해 지역변수로 선언
+                System.out.print("Name(q to quit): "); // 이름 입력
+                name=scanner.next();
+                name=name.substring(0, 1).toUpperCase() + name.substring(1); // 첫 문자는 대문자로 바꿔서 저장
             
-            if(name.equalsIgnoreCase("q")){ // 대소문자 관계없이 q를 입력하면 자료입력 종료
-                System.out.println("Completed");
-                System.out.println("");
-                break;
-            }
-            
-            for(int i=0;i<student.size();i++){
-                if(name.equalsIgnoreCase(student.get(i).name)){ // list에 같은 이름이 존재하는 경우
-                    System.out.println("The name already exists.");
+                if(name.equalsIgnoreCase("q")){ // 대소문자 관계없이 q를 입력하면 자료입력 종료
+                    System.out.println("Completed");
                     System.out.println("");
                     return;
+                }
+                
+                for(int i=0;i<student.size();i++){
+                    if(name.equalsIgnoreCase(student.get(i).name)){ // list에 같은 이름이 존재하는 경우
+                        same=true; // 이름이 같아면 true로 변환
+                        System.out.println("The name already exists.");
+                        System.out.println("");
+                        break;
                     }
+                }
+                if(same==false) // 리스트내에 같은 이름이 없다면 다음 값을 받는다
+                    break;
             }
-                    
+            
             while(true){ // 양수를 입력할 때까지 반복
                 System.out.print("Age: "); // 나이 입력
                 age=scanner.nextInt();
@@ -138,7 +144,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
         System.out.println("");
     }
     
-    public static void modify(){
+    public static void modify(){ // 정확한 값을 입력할 떄까지 반복한다.
         String name = null;
         int age = 0;
         double javascore = 0;
@@ -160,9 +166,23 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
             	System.out.print("What data would you modify?: "); // 수정할 이름, 나이, 점수, 모든 값중 선택
             	String data=scanner.next();
             	if(data.equalsIgnoreCase("Name")) { // 이름 수정
-            		System.out.print("Name: ");
-            		name=scanner.next();
-                    name=name.substring(0, 1).toUpperCase() + name.substring(1); // 받아온 이름의 첫문자는 대문자로 바꿔서 저장
+                    while(true){ // 수정을 할때도 범위를 벗어나지 않기위해 input의 조건대로 값을 입력받는다
+                        boolean same=false; // 이름이 같은 경우인지 아닌지 판단하기위한 flag, 다시 반복을 시작할 때 false로 값을 변환하기위해 지역변수로 선언
+                        System.out.print("Name: "); // 이름 입력
+                        name=scanner.next();
+                        name=name.substring(0, 1).toUpperCase() + name.substring(1); // 첫 문자는 대문자로 바꿔서 저장
+                
+                        for(int j=0;j<student.size();j++){
+                            if(name.equalsIgnoreCase(student.get(j).name)){ // list에 같은 이름이 존재하는 경우
+                                same=true; // 이름이 같아면 true로 변환
+                                System.out.println("The name already exists.");
+                                System.out.println("");
+                                break;
+                            }
+                        }
+                        if(same==false) // 리스트내에 같은 이름이 없다면 다음 값을 받는다
+                            break;
+                    }
                     age=student.get(i).age; // 이름만 수정했으므로 나머지 값들은 저장되어있던 값 그대로 둔다
                     javascore=student.get(i).javascore;
                     algoscore=student.get(i).algoscore;
@@ -172,8 +192,17 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
             	}
             	
             	else if(data.equalsIgnoreCase("Age")) {
-            		System.out.print("Age: ");
-            		age=scanner.nextInt();
+                    while(true){ // 양수를 입력할 때까지 반복
+                        System.out.print("Age: "); // 나이 입력
+                        age=scanner.nextInt();
+                        if(age<0){ // 양수만 입력 가능
+                            System.out.println("Please enter a positive number");
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
             		name=student.get(i).name;
             		javascore=student.get(i).javascore;
                     algoscore=student.get(i).algoscore;
@@ -183,8 +212,17 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
             	}
             	
             	else if(data.equalsIgnoreCase("Java")) {
-            		System.out.print("Java score: ");
-            		javascore=scanner.nextDouble();
+                    while(true){ // 0~100 사이 값을 입력할 때까지 반복
+                        System.out.print("Java score(0~100): "); // 자바 점수 입력
+                        javascore=scanner.nextDouble();
+                        if(javascore<0 || javascore>100){ // 0~100값이 아닐경우
+                            System.out.println("Please keep the range");
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
             		name=student.get(i).name;
             		age=student.get(i).age;
             		algoscore=student.get(i).algoscore;
@@ -194,8 +232,17 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
             	}
             	
             	else if(data.equalsIgnoreCase("Algorithm")) {
-            		System.out.print("Algorithm score: ");
-            		algoscore=scanner.nextDouble();
+                    while(true){ // 0~100 사이 값을 입력할 때까지 반복
+                        System.out.print("Algorithm score(0~100): "); // 알고리즘 점수 입력
+                        algoscore=scanner.nextDouble();
+                        if(algoscore<0 || algoscore>100){ // 0~100값이 아닐경우
+                            System.out.println("Please keep the range");
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
             		name=student.get(i).name;
             		age=student.get(i).age;
             		javascore=student.get(i).javascore;
@@ -205,19 +252,70 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
             	}
                 
                 else if(data.equalsIgnoreCase("All")){ // 모든 값 수정
-                    System.out.print("Name: "); // 모든 데이터를 새로 받아서 저장한다.
-            		name=scanner.next();
-                    name=name.substring(0, 1).toUpperCase() + name.substring(1);
-                    System.out.print("Age: ");
-            		age=scanner.nextInt();
-                    System.out.print("Java score: ");
-            		javascore=scanner.nextDouble();
-                    System.out.print("Algorithm score: ");
-            		algoscore=scanner.nextDouble();
+                    while(true){
+                        boolean same=false; // 이름이 같은 경우인지 아닌지 판단하기위한 flag, 다시 반복을 시작할 때 false로 값을 변환하기위해 지역변수로 선언
+                        System.out.print("Name(q to quit): "); // 이름 입력
+                        name=scanner.next();
+                        name=name.substring(0, 1).toUpperCase() + name.substring(1); // 첫 문자는 대문자로 바꿔서 저장
+            
+                        if(name.equalsIgnoreCase("q")){ // 대소문자 관계없이 q를 입력하면 자료입력 종료
+                            System.out.println("Completed");
+                            System.out.println("");
+                            return;
+                        }
+                
+                        for(int j=0;j<student.size();j++){
+                            if(name.equalsIgnoreCase(student.get(j).name)){ // list에 같은 이름이 존재하는 경우
+                                same=true; // 이름이 같아면 true로 변환
+                                System.out.println("The name already exists.");
+                                System.out.println("");
+                                break;
+                            }
+                        }
+                        if(same==false) // 리스트내에 같은 이름이 없다면 다음 값을 받는다
+                            break;
+                    }
+            
+                    while(true){ // 양수를 입력할 때까지 반복
+                        System.out.print("Age: "); // 나이 입력
+                        age=scanner.nextInt();
+                        if(age<0){ // 양수만 입력 가능
+                            System.out.println("Please enter a positive number");
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+        
+                    while(true){ // 0~100 사이 값을 입력할 때까지 반복
+                        System.out.print("Java score(0~100): "); // 자바 점수 입력
+                        javascore=scanner.nextDouble();
+                        if(javascore<0 || javascore>100){ // 0~100값이 아닐경우
+                            System.out.println("Please keep the range");
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+            
+                    while(true){ // 0~100 사이 값을 입력할 때까지 반복
+                        System.out.print("Algorithm score(0~100): "); // 알고리즘 점수 입력
+                        algoscore=scanner.nextDouble();
+                        if(algoscore<0 || algoscore>100){ // 0~100값이 아닐경우
+                            System.out.println("Please keep the range");
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
                     student.add(i,new Student(name,age,javascore,algoscore));
             		student.remove(i+1);
                     break;
                 }
+                
                 else{
                     System.out.println("Invalid input"); // 수정할 자료의 이름을 잘못입력했을 경우
                     System.out.println("");
@@ -423,11 +521,9 @@ public class Main {
             System.out.println("Enter the number");
             System.out.print(">>> ");
             
-        
             Scanner scanner=new Scanner(System.in);
-            int number=scanner.nextInt();
+            int number=scanner.nextInt(); // 번호 입력
         
-
             switch(number){
                 case 1:
                     Student.input();
@@ -461,4 +557,3 @@ public class Main {
         }
     }
 }
-    
