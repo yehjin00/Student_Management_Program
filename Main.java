@@ -485,7 +485,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
     }
 }
 
-class JavaComparator implements Comparator<Student>{ // Comparator라는 인터페이스를 이용하여 자바점수 비교
+class JavaComparator implements Comparator<Student>{ // Comparator라는 인터페이스를 이용하여 자바점수 비교(Quick sort)
 	@Override // 인터페이스내 함수를 overriding해서 내가 원하는 대로 수행하도록 바꿈
 	public int compare(Student a,Student b){ // 오름차순 정렬
 		if(a.javascore>b.javascore) return 1; // 두 값을 비교하여 앞에 값이 클 경우 1 반환
