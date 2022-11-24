@@ -102,7 +102,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
         Scanner scanner=new Scanner(System.in);
         String name=scanner.next();
         
-        if(name.equalsIgnoreCase("q")){ // 대소문자 관계없이 q를 입력하면 자료입력 종료
+        if(name.equalsIgnoreCase("q")){ // 대소문자 관계없이 q를 입력하면 종료
             System.out.println("Quit");
             System.out.println("");
             return;
