@@ -8,7 +8,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
     double javascore;
     double algoscore;
     
-    public Student(String name, int age, double javascore, double algoscore){
+    public Student(String name, int age, double javascore, double algoscore){ // 생성자
         this.name=name;
         this.age=age;
         this.javascore=javascore;
