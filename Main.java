@@ -98,9 +98,15 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
         }
         
         printall(); // 삭제하기 용이하도록 student내 자료들을 출력
-        System.out.print("Name to remove: "); // 제거할 자료의 이름 입력
+        System.out.print("Name to remove(q to quit): "); // 제거할 자료의 이름 입력
         Scanner scanner=new Scanner(System.in);
         String name=scanner.next();
+        
+        if(name.equalsIgnoreCase("q")){ // 대소문자 관계없이 q를 입력하면 자료입력 종료
+            System.out.println("Quit");
+            System.out.println("");
+            return;
+        }
         
         for(int i=0;i<student.size();i++){ 
             if(student.get(i).name.equalsIgnoreCase(name)){ // 입력한 이름이 리스트내에 있을 경우
@@ -126,9 +132,16 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
             return;
         }
         
-        System.out.print("Name to search: ");
+        System.out.print("Name to search(q to quit): ");
         Scanner scanner=new Scanner(System.in);
         String name=scanner.next();
+        
+        if(name.equalsIgnoreCase("q")){
+            System.out.println("Quit");
+            System.out.println("");
+            return;
+        }
+        
         for(int i=0;i<student.size();i++){ 
             if(student.get(i).name.equalsIgnoreCase(name)){ // 검색할 이름이 리스트 내에 있을 경우 해당 정보 출력
                 System.out.println("---Information(Name, Age, Java score, Algorithm score)---");
@@ -163,7 +176,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
 
         for(int i=0;i<student.size();i++){ 
             if(i==index-1){ // 입력한 인덱스 번호-1과 i가 같다면 값 수정(인덱스번호는 출력시 +1을 해서 출력하므로 -1한 값과 비교해야함)
-            	System.out.print("What data would you modify?: "); // 수정할 이름, 나이, 점수, 모든 값중 선택
+            	System.out.print("What data would you modify?(q to quit): "); // 수정할 이름, 나이, 점수, 모든 값중 선택
             	String data=scanner.next();
             	if(data.equalsIgnoreCase("Name")) { // 이름 수정
                     while(true){ // 수정을 할때도 범위를 벗어나지 않기위해 input의 조건대로 값을 입력받는다
@@ -314,6 +327,12 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
                     student.add(i,new Student(name,age,javascore,algoscore)); // 해당 인덱스값에 정보를 입력해야하므로 맨 뒤에 추가하는 input함수를 "All"에서 사용하지못함
             		student.remove(i+1);
                     break;
+                }
+                
+                else if(data.equalsIgnoreCase("q")){
+                    System.out.println("Quit");
+                    System.out.println("");
+                    return;
                 }
                 
                 else{
@@ -485,7 +504,7 @@ class Student{ // Student 객체 생성(이름, 나이, 자바점수, 알고리�
     }
 }
 
-class JavaComparator implements Comparator<Student>{ // Comparator라는 인터페이스를 이용하여 자바점수 비교(Quick sort)
+class JavaComparator implements Comparator<Student>{ // Comparator라는 인터페이스를 이용하여 자바점수 비교
 	@Override // 인터페이스내 함수를 overriding해서 내가 원하는 대로 수행하도록 바꿈
 	public int compare(Student a,Student b){ // 오름차순 정렬
 		if(a.javascore>b.javascore) return 1; // 두 값을 비교하여 앞에 값이 클 경우 1 반환
